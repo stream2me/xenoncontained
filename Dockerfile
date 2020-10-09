@@ -1,6 +1,6 @@
-FROM debian:buster-slim
+FROM navikey/raspbian-buster
 
-ENV XENON_BCORE=j4
+ENV XENON_BCORE=j2
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y \
                           gcc \
@@ -12,17 +12,16 @@ RUN apt-get update && apt-get install -y \
                           libgmp3-dev \
                           libmpfr-dev \
                           libmpc-dev \
-                          git-core \
+                          git \
                           gettext \
-                          ncurses-dev \
+                          libncurses-dev \
                           fish \
                           vim \
                           sudo \
                           flex \
                           bison \
-                          gcc-multilib \
                           tzdata
-RUN ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime
+RUN ln -fs /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 RUN dpkg-reconfigure --frontend noninteractive tzdata                  
 RUN apt-get autoremove
 
